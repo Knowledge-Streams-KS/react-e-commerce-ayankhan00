@@ -4,6 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from '../components/Card';
+import './Product.css';
 
 function Product() {
 	const [product, setProduct] = useState([]);
@@ -32,16 +33,16 @@ function Product() {
 	return (
 		<>
 			{console.log(product)}
-
+			<h1 className='title'>E-Commerce Site</h1>
 			<div className='center'>
 				<div id='add-task' className='add-task'>
 					<input
 						type='text'
-						placeholder='Task to be done...'
+						placeholder='Search...'
 						value={input}
 						onChange={handleChange}
 					/>
-					<button id='push'>Add</button>
+					<button id='push'>Seacrh</button>
 				</div>
 				<div className='property-card'>
 					{data.map((p, index) => (
@@ -51,6 +52,7 @@ function Product() {
 							title={p.title}
 							price={p.price}
 							image={p.image}
+							category={p.category}
 						/>
 					))}
 				</div>
