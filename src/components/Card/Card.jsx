@@ -13,7 +13,7 @@ function Card({ id, title, price, image, category }) {
 				<img src={image} alt='product image' />
 				<h4 className='product-name'>{title}</h4>
 				<p className='product-category'>{category}</p>
-				<p className='product-price'>{price}</p>
+				<p className='product-price'>${price}</p>
 			</Link>
 		</div>
 

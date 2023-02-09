@@ -15,23 +15,33 @@ function Product() {
 
 	useEffect(() => {
 		console.log(category);
-		if (category) {
-			axios
-				.get(`https://fakestoreapi.com/products/category/${category}`)
-				.then((res) => {
-					const prod = res.data;
-					setProduct(prod);
-					setData(prod);
-					console.log(category);
-				});
-		} else {
-			axios.get('https://fakestoreapi.com/products').then((res) => {
-				const prod = res.data;
-				setProduct(prod);
-				setData(prod);
-			});
-		}
-	}, []);
+		const fetchData = async () => {
+			const endPoint = category
+				? `https://fakestoreapi.com/products/category/${category}`
+				: `https://fakestoreapi.com/products`;
+			const { data: resdata } = await axios.get(endPoint);
+			setProduct(resdata);
+			setData(resdata);
+		};
+
+		// if (category) {
+		// 	axios
+		// 		.get(`https://fakestoreapi.com/products/category/${category}`)
+		// 		.then((res) => {
+		// 			const prod = res.data;
+		// 			setProduct(prod);
+		// 			setData(prod);
+		// 			console.log(category);
+		// 		});
+		// } else {
+		// 	axios.get('https://fakestoreapi.com/products').then((res) => {
+		// 		const prod = res.data;
+		// 		setProduct(prod);
+		// 		setData(prod);
+		// 	});
+		// }
+		fetchData();
+	}, [category]);
 
 	const handleChange = (e) => {
 		setInput(e.target.value);
@@ -43,8 +53,8 @@ function Product() {
 		setData(s);
 		console.log(s);
 	};
-	const handleSort = () => {
-		const sortedData = [...product].sort((a, b) => {
+	const handleSortName = () => {
+		let sortedData = [...data].sort((a, b) => {
 			if (a.title < b.title) {
 				return -1;
 			}
@@ -55,8 +65,42 @@ function Product() {
 		});
 		console.log(sortedData);
 		setData(sortedData);
+		sortedData = [...product].sort((a, b) => {
+			if (a.title < b.title) {
+				return -1;
+			}
+			if (a.title > b.title) {
+				return 1;
+			}
+			return 0;
+		});
 		setProduct(sortedData);
 	};
+
+	const handleSortPrice = () => {
+		let sortedData = [...data].sort((a, b) => {
+			if (a.price < b.price) {
+				return -1;
+			}
+			if (a.price > b.price) {
+				return 1;
+			}
+			return 0;
+		});
+		console.log(sortedData);
+		setData(sortedData);
+		sortedData = [...product].sort((a, b) => {
+			if (a.price < b.price) {
+				return -1;
+			}
+			if (a.price > b.price) {
+				return 1;
+			}
+			return 0;
+		});
+		setProduct(sortedData);
+	};
+
 	return (
 		<>
 			<h1 className='title'>Product List</h1>
@@ -68,7 +112,8 @@ function Product() {
 						value={input}
 						onChange={handleChange}
 					/>
-					<button onClick={handleSort}>Sort by name</button>
+					<button onClick={handleSortName}>Sort by Name</button>
+					<button onClick={handleSortPrice}>Sort by Price</button>
 				</div>
 				<div className='property-card'>
 					{data.map((p, index) => (

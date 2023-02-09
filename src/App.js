@@ -12,19 +12,24 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 function App() {
 	return (
 		<div className='App'>
-			<Navbar />
+			{/* <Navbar /> */}
 			<Routes>
-				<Route path='/home' element={<Home />} />
-				<Route path='/product/:category?' element={<Product />} />
-				<Route path='/category' element={<Category />} />
-				<Route
-					path='/product-detail/:id?'
-					element={<ProductDetail />}
-				/>
-				<Route path='/page-not-found' element={<ErrorPage />} />
+				<Route path='/' element={<Navbar />}>
+					<Route path='home' element={<Home />} />
+					<Route path='product/:category?' element={<Product />} />
+					<Route path='category' element={<Category />} />
+					<Route
+						path='product-detail/:id?'
+						element={<ProductDetail />}
+					/>
+					<Route path='page-not-found' element={<ErrorPage />} />
 
-				<Route path='/' element={<Navigate to='/home' />} />
-				<Route path='/*' element={<Navigate to='/page-not-found' />} />
+					<Route path='/' element={<Navigate to='/home' />} />
+					<Route
+						path='/*'
+						element={<Navigate to='/page-not-found' />}
+					/>
+				</Route>
 			</Routes>
 		</div>
 	);
