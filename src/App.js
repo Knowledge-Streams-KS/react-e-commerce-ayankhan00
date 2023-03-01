@@ -1,37 +1,61 @@
 /** @format */
 
 import './App.css';
-import Product from './pages/Products/Products';
-import Category from './pages/Category/Category';
-import Home from './pages/Home/Home';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import ProductDetail from './pages/ProductDetail/ProductDetail';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
+import { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode';
+import Routes from './routes/Routed';
 
 function App() {
-	return (
-		<div className='App'>
-			{/* <Navbar /> */}
-			<Routes>
-				<Route path='/' element={<Navbar />}>
-					<Route path='home' element={<Home />} />
-					<Route path='product/:category?' element={<Product />} />
-					<Route path='category' element={<Category />} />
-					<Route
-						path='product-detail/:id?'
-						element={<ProductDetail />}
-					/>
-					<Route path='page-not-found' element={<ErrorPage />} />
+	const [user, setUser] = useState({});
 
-					<Route path='/' element={<Navigate to='/home' />} />
-					<Route
-						path='/*'
-						element={<Navigate to='/page-not-found' />}
-					/>
-				</Route>
-			</Routes>
-		</div>
+	//Google Authentication Working
+	
+	// function handleCallbackResponse(response) {
+	// 	console.log('Encoded JWT ID Token: ' + response.credential);
+	// 	var userObject = jwt_decode(response.credential);
+	// 	console.log(userObject);
+	// 	setUser(userObject);
+	// 	console.log(user);
+	// 	localStorage.setItem('userKey', JSON.stringify(response.credential));
+	// 	document.getElementById('signInDiv').hidden = true;
+	// }
+
+	// function handleSignOut(event) {
+	// 	setUser({});
+	// 	document.getElementById('signInDiv').hidden = false;
+	// 	localStorage.setItem('userKey', JSON.stringify(null));
+	// }
+	// useEffect(() => {
+	/* global google */
+	// google.accounts.id.initialize({
+	// 	client_id:
+	// 		'941549590439-l7m5dhb6m65sa3103cg0fe3m62ff706i.apps.googleusercontent.com',
+	// 	callback: handleCallbackResponse,
+	// });
+	// google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+	// 	theme: 'outline',
+	// 	size: 'large',
+	// });
+	// const userKey = JSON.parse(localStorage.getItem('userKey'));
+	// if (userKey) {
+	// 	var userObject = jwt_decode(userKey);
+	// 	console.log('hello ');
+	// 	console.log(userObject);
+	// 	setUser(userObject);
+	// 	document.getElementById('signInDiv').hidden = true;
+	// } else {
+	// 	google.accounts.id.prompt();
+	// }
+	// }, []);
+
+	return (
+		<>
+			<div className='App'>
+				<Routes />
+				{/* <div id='signInDiv' style={{ marginTop: '4rem' }}></div> */}
+				{/* {console.log(user)} */}
+			</div>
+		</>
 	);
 }
 

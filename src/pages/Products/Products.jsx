@@ -14,7 +14,6 @@ function Product() {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		console.log(category);
 		const fetchData = async () => {
 			const endPoint = category
 				? `https://fakestoreapi.com/products/category/${category}`
@@ -23,23 +22,6 @@ function Product() {
 			setProduct(resdata);
 			setData(resdata);
 		};
-
-		// if (category) {
-		// 	axios
-		// 		.get(`https://fakestoreapi.com/products/category/${category}`)
-		// 		.then((res) => {
-		// 			const prod = res.data;
-		// 			setProduct(prod);
-		// 			setData(prod);
-		// 			console.log(category);
-		// 		});
-		// } else {
-		// 	axios.get('https://fakestoreapi.com/products').then((res) => {
-		// 		const prod = res.data;
-		// 		setProduct(prod);
-		// 		setData(prod);
-		// 	});
-		// }
 		fetchData();
 	}, [category]);
 
@@ -51,7 +33,6 @@ function Product() {
 				.includes(e.target.value.toLowerCase());
 		});
 		setData(s);
-		console.log(s);
 	};
 	const handleSortName = () => {
 		let sortedData = [...data].sort((a, b) => {
@@ -63,7 +44,6 @@ function Product() {
 			}
 			return 0;
 		});
-		console.log(sortedData);
 		setData(sortedData);
 		sortedData = [...product].sort((a, b) => {
 			if (a.title < b.title) {
@@ -87,7 +67,6 @@ function Product() {
 			}
 			return 0;
 		});
-		console.log(sortedData);
 		setData(sortedData);
 		sortedData = [...product].sort((a, b) => {
 			if (a.price < b.price) {
@@ -119,7 +98,7 @@ function Product() {
 					{data.map((p, index) => (
 						<Card
 							key={index}
-							id={p.id}
+							id={index}
 							title={p.title}
 							price={p.price}
 							image={p.image}
