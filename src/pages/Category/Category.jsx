@@ -17,11 +17,10 @@ const Category = () => {
 	}, []);
 	return (
 		<div>
-			{console.log(category)}
 			<h1 className='title'>Category</h1>
 			<br />
 			{category.map((p, index) => (
-				<div>
+				<div key={index}>
 					<Link to={`/product/${p}`} key={index}>
 						{p}
 					</Link>

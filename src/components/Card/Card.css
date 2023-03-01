@@ -18,6 +18,13 @@
     height: 40%;
 }
 
+.img {
+    width: auto;
+    max-height: 300px;
+    max-width: 90%;
+    height: 40%;
+}
+
 .product-name {
     margin-top: 18px;
     font-size: 20px;

@@ -16,11 +16,6 @@ function Card({ id, title, price, image, category }) {
 				<p className='product-price'>${price}</p>
 			</Link>
 		</div>
-
-		// <img className='image' src={image} />
-		// <h1>{title}</h1>
-		// <p>{price}</p>
-		// </div>
 	);
 }
 
