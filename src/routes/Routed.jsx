@@ -48,10 +48,16 @@ const Routed = () => {
 							<PrivateRoute>
 								<Cart />
 							</PrivateRoute>
-						}>
-						<Route path='order-completed' element={<Checkout />} />
-						<Route path='user-detail-form' element={<Form />} />
-					</Route>
+						}
+					></Route>
+					<Route
+						path='/checkout/order-completed'
+						element={<Checkout />}
+					/>
+					<Route
+						path='/checkout/user-detail-form'
+						element={<Form />}
+					/>
 
 					<Route path='/' element={<Navigate to='/home' />} />
 					<Route

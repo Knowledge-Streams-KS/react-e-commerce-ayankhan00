@@ -10,20 +10,22 @@ import { useParams } from 'react-router-dom';
 function Product() {
 	let { category } = useParams();
 	const [product, setProduct] = useState([]);
+	const [productBackend, setProductBackend] = useState([]);
 	const [input, setInput] = useState([]);
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const endPoint = category
-				? `https://fakestoreapi.com/products/category/${category}`
-				: `https://fakestoreapi.com/products`;
+				? `http://localhost:9050/products/getProductByCategory?category=${category} `
+				: `http://localhost:9050/products/getProduct`;
 			const { data: resdata } = await axios.get(endPoint);
 			setProduct(resdata);
 			setData(resdata);
+				console.log(resdata);
 		};
 		fetchData();
-	}, [category]);
+	}, []);
 
 	const handleChange = (e) => {
 		setInput(e.target.value);
@@ -98,7 +100,7 @@ function Product() {
 					{data.map((p, index) => (
 						<Card
 							key={index}
-							id={index}
+							id={p.id}
 							title={p.title}
 							price={p.price}
 							image={p.image}

@@ -22,7 +22,7 @@ function CartCounter({ count, index }) {
 
 	const handleDecrement = () => {
 		dispatch(decrement(id));
-		value > 0 && setValue(value - 1);
+		value > 1 && setValue(value - 1);
 	};
 	return (
 		<>
