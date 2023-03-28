@@ -27,12 +27,10 @@ function Login() {
 	const location = useLocation();
 	const redirectFrom = location.state?.location.pathname;
 	const onSubmit = (values) => {
-		console.log('Form data', values);
 		signInWithEmailAndPassword(auth, values.email, values.password)
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-				console.log('hello');
 				localStorage.setItem('token', user.accessToken);
 				localStorage.setItem('user', user);
 				redirectFrom ? navigate(redirectFrom) : navigate('/home');

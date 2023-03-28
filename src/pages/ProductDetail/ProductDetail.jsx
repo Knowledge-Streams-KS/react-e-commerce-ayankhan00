@@ -17,10 +17,12 @@ const ProductDetail = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const endPoint = id && `https://fakestoreapi.com/products/${id}`;
+			const endPoint = `http://localhost:9050/products/getProductById?id=${id}`;
+			// const endPoint = id && `https://fakestoreapi.com/products/${id}`;
 
 			const { data: resdata } = await axios.get(endPoint);
 			// console.log('Item', resdata);
+			console.log(resdata);
 			setProduct(resdata);
 		};
 		fetchData();

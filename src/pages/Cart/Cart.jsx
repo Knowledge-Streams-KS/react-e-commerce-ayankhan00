@@ -36,10 +36,10 @@ function Cart() {
 			<br />
 
 			<br />
-			<Link to='/checkout/user-detail-form'>Open Form</Link>
+			<Link to='/checkout/user-detail-form'>Proceed</Link>
 			<br />
-			<Link to='/checkout/order-completed'>Checkout</Link>
-			<Outlet />
+			{/* <Link to='/checkout/order-completed'>Checkout</Link> */}
+			{/* <Outlet /> */}
 		</div>
 	);
 }

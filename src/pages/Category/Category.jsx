@@ -8,22 +8,27 @@ const Category = () => {
 	const [category, setCategory] = useState([]);
 
 	useEffect(() => {
-		axios
-			.get('https://fakestoreapi.com/products/categories')
-			.then((res) => {
-				const d = res.data;
-				setCategory(d);
-			});
+		axios.get('http://localhost:9050/products/getCategory').then((res) => {
+			setCategory(res.data);
+		});
 	}, []);
 	return (
 		<div>
 			<h1 className='title'>Category</h1>
 			<br />
+			<br />
 			{category.map((p, index) => (
-				<div key={index}>
-					<Link to={`/product/${p}`} key={index}>
+				<div>
+					<Link
+						to={`/product/${p}`}
+						key={index}
+						className='creative-button'
+					>
 						{p}
 					</Link>
+					<br />
+					<br />
+					<br />
 				</div>
 			))}
 		</div>
